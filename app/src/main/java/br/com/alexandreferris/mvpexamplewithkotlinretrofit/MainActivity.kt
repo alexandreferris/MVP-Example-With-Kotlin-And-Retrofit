@@ -25,17 +25,22 @@ class MainActivity : AppCompatActivity(), BeerView {
         presenter.loadBeers()
     }
 
-    override fun displayBeers(carsList: List<Beer>) {
+    override fun displayBeers(beersList: List<Beer>) {
         if (loadingDialog.isShowing) {
             loadingDialog.dismiss()
         }
-        Log.i("TAG_APP_01", "CAIU 1")
+
+        for (beer in beersList) {
+            Log.i("TAG_APP_B", "B: " + beer.name)
+        }
+
+        Log.i("TAG_APP_01", "DISPLAY BEERS")
     }
 
     override fun displayNoBeers() {
         if (loadingDialog.isShowing) {
             loadingDialog.dismiss()
         }
-        Log.i("TAG_APP_02", "CAIU 2")
+        Log.i("TAG_APP_02", "NO BEERS")
     }
 }

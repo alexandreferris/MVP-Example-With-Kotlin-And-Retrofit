@@ -1,5 +1,6 @@
 package br.com.alexandreferris.mvpexamplewithkotlinretrofit.presenter
 
+import android.util.Log
 import br.com.alexandreferris.mvpexamplewithkotlinretrofit.data.Beerrepository
 import br.com.alexandreferris.mvpexamplewithkotlinretrofit.model.Beer
 import br.com.alexandreferris.mvpexamplewithkotlinretrofit.view.BeerView
