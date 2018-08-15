@@ -18,29 +18,41 @@ class MainActivity : AppCompatActivity(), BeerView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        presenter = BeerPresenter(this)
-
+        // Loading Dialog
         loadingDialog = LoadingDialog(this)
-        loadingDialog.show()
-        presenter.loadBeers()
+
+        presenter = BeerPresenter(this)
     }
 
-    override fun displayBeers(beersList: List<Beer>) {
-        if (loadingDialog.isShowing) {
-            loadingDialog.dismiss()
-        }
+    override fun displayBeers(beersList: ArrayList<Beer>) {
 
         for (beer in beersList) {
             Log.i("TAG_APP_B", "B: " + beer.name)
         }
 
-        Log.i("TAG_APP_01", "DISPLAY BEERS")
+        supportFragmentManager.beginTransaction().run {
+            val frag = BeerListFragment()
+            frag.setList(beersList)
+            replace(R.id.fragBeerList, frag)
+            commit()
+        }
     }
 
     override fun displayNoBeers() {
+        Log.i("TAG_APP_02", "NO BEERS")
+    }
+
+    override fun showLoading() {
+        loadingDialog.show()
+    }
+    override fun hideLoading() {
         if (loadingDialog.isShowing) {
             loadingDialog.dismiss()
         }
-        Log.i("TAG_APP_02", "NO BEERS")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        presenter.loadBeers()
     }
 }

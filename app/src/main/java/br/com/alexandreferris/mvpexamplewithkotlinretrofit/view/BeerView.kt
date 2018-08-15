@@ -7,7 +7,11 @@ import br.com.alexandreferris.mvpexamplewithkotlinretrofit.model.Beer
  */
 interface BeerView {
 
-    fun displayBeers(carsList: List<Beer>)
+    fun displayBeers(carsList: ArrayList<Beer>)
 
     fun displayNoBeers()
+
+    fun showLoading()
+
+    fun hideLoading()
 }

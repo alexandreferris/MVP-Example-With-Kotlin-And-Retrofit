@@ -12,7 +12,7 @@ import retrofit2.http.GET
 interface Beerrepository {
 
     @GET("beers")
-    fun getBeers(): Call<List<Beer>>
+    fun getBeers(): Call<ArrayList<Beer>>
 
 
     companion object Factory {

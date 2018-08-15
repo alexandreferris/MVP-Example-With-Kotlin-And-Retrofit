@@ -1,10 +1,10 @@
 package br.com.alexandreferris.mvpexamplewithkotlinretrofit.presenter
 
-import android.util.Log
 import br.com.alexandreferris.mvpexamplewithkotlinretrofit.data.Beerrepository
 import br.com.alexandreferris.mvpexamplewithkotlinretrofit.model.Beer
 import br.com.alexandreferris.mvpexamplewithkotlinretrofit.view.BeerView
 import retrofit2.Call
+import retrofit2.Callback
 import retrofit2.Response
 
 /**
@@ -20,19 +20,20 @@ class BeerPresenter {
     }
 
     fun loadBeers() {
-
-        api.getBeers().enqueue(object : retrofit2.Callback<List<Beer>> {
-            override fun onFailure(call: Call<List<Beer>>?, t: Throwable?) {
+        view.showLoading()
+        api.getBeers().enqueue(object : Callback<ArrayList<Beer>> {
+            override fun onFailure(call: Call<ArrayList<Beer>>?, t: Throwable?) {
+                view.hideLoading()
                 view.displayNoBeers()
             }
 
-            override fun onResponse(call: Call<List<Beer>>?, response: Response<List<Beer>>?) {
+            override fun onResponse(call: Call<ArrayList<Beer>>?, response: Response<ArrayList<Beer>>?) {
+                view.hideLoading()
                 response?.body()?.let {
-                    val cars: List<Beer> = it
+                    val cars: ArrayList<Beer> = it
                     view.displayBeers(cars)
                 }
             }
-
         })
     }
 }
