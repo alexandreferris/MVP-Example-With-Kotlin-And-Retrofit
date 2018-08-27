@@ -30,8 +30,8 @@ class BeerPresenter {
             override fun onResponse(call: Call<ArrayList<Beer>>?, response: Response<ArrayList<Beer>>?) {
                 view.hideLoading()
                 response?.body()?.let {
-                    val cars: ArrayList<Beer> = it
-                    view.displayBeers(cars)
+                    val beers: ArrayList<Beer> = it
+                    view.displayBeers(beers)
                 }
             }
         })

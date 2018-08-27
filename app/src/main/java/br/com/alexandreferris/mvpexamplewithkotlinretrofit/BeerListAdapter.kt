@@ -17,12 +17,14 @@ class BeerListAdapter(private val dataSet: ArrayList<Beer>) : RecyclerView.Adapt
      * Provide a reference to the type of views that you are using (custom ViewHolder)
      */
     class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
-        val textView: TextView
+        val txtName: TextView
+        val txtABV: TextView
 
         init {
             // Define click listener for the ViewHolder's View.
             v.setOnClickListener { Log.d(TAG, "Element $adapterPosition clicked.") }
-            textView = v.findViewById(R.id.txtName)
+            txtName = v.findViewById(R.id.txtName)
+            txtABV = v.findViewById(R.id.txtABV)
         }
     }
 
@@ -40,7 +42,8 @@ class BeerListAdapter(private val dataSet: ArrayList<Beer>) : RecyclerView.Adapt
 
         // Get element from your dataset at this position and replace the contents of the view
         // with that element
-        viewHolder.textView.text = dataSet.get(position).name
+        viewHolder.txtName.text = dataSet.get(position).name
+        viewHolder.txtABV.text = dataSet.get(position).abv.toString() + "%"
     }
 
     // Return the size of your dataset (invoked by the layout manager)

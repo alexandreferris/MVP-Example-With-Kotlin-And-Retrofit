@@ -25,11 +25,6 @@ class MainActivity : AppCompatActivity(), BeerView {
     }
 
     override fun displayBeers(beersList: ArrayList<Beer>) {
-
-        for (beer in beersList) {
-            Log.i("TAG_APP_B", "B: " + beer.name)
-        }
-
         supportFragmentManager.beginTransaction().run {
             val frag = BeerListFragment()
             frag.setList(beersList)
